@@ -14,7 +14,6 @@ function FeedbackItem({item, handleDelete}) {
       </button>
       <div className="text-display">{item.text}
       </div>
-
     </Card>
   )
 }
