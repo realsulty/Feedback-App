@@ -3,8 +3,11 @@ import { useState } from "react"
 import Button from "./shared/Button"
 import RatingSelect from "./RatingSelect"
 
-function FeedbackForm() {
+// We add props since they are function used in the upper file
+// here the handleAdd is passed to the parent file to incoke the function
+function FeedbackForm({handleAdd}) {
     const [text, setText] = useState('')
+    const [rating, setRating] = useState(10)
     const [btnDisabled, setBtnDisabled] = useState(true)
     const [message, setMessage] = useState('')
 
@@ -23,12 +26,25 @@ function FeedbackForm() {
         setText(e.target.value)
     }
 
+    const handleSubmit = (e) => { 
+        e.preventDefault()
+        if(text.trim().length > 10) {
+            const newFeedback = {
+                text,
+                rating,
+            }
+            handleAdd(newFeedback);
+            setText('')
+
+        }
+    }
+
 
   return (
 <Card>
-    <form>
+    <form onSubmit={handleSubmit}>
         <h2>How Would you rate your Service with us today?</h2>
-        <RatingSelect/>
+        <RatingSelect select={(rating) => setRating(rating)}/>
         <div className="input-group">
             <input type="text"
             onChange={handleTextChange}
