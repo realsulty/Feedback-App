@@ -48,7 +48,7 @@ function FeedbackForm({handleAdd}) {
         <div className="input-group">
             <input type="text"
             onChange={handleTextChange}
-            placeholder="Wrtie a review"
+            placeholder="write a new review"
             value={text}
             />
             <Button type="submit" isDisabled={btnDisabled} >Send</Button>

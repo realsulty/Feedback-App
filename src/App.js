@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { v4 as uuidv4 } from 'uuid'
+import {BrowserRouter as Router, Route} from 'react-router-dom' 
 import Header from "./components/Header"
 import FeedbackList from "./components/FeedbackList"
 import FeedbackData from "./Data/FeedbackData"
 import FeedbackStats from "./components/FeedbackStats"
 import FeedbackForm from "./components/FeedbackForm"
+import AboutPage from "./pages/AboutPage"
 
 function App(){
 const [feedback, setFeedback] = useState
@@ -24,15 +26,20 @@ if (window.confirm('Are you sure you want to delete?')) {
 
   return ( // in the app component you can only insert two or more html elem
   // when u wrap them around either a Div elem or two angle brackets <> OR div
-        <>
-        <Header />
+// Now the router has the intial <> brackets 
+        <Router> 
+        <Header/>
         <div className="container" > 
+        <Route exact path='/'>
         <FeedbackForm handleAdd={addFeedback}/>
         <FeedbackStats feedback={feedback} />
         <FeedbackList feedback={feedback}
         handleDelete={deleteFeedback}/> 
+        </Route>
+
+        <Route path='/about' component={AboutPage} />
             </div>
-            </>
+            </Router>
         )
 
         }
