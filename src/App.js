@@ -7,6 +7,8 @@ import FeedbackData from "./Data/FeedbackData"
 import FeedbackStats from "./components/FeedbackStats"
 import FeedbackForm from "./components/FeedbackForm"
 import AboutPage from "./pages/AboutPage"
+import AboutIcon from "./components/AboutIcon"
+import { FeedbackProvider } from "./context/FeedbackContext"
 
 function App(){
 const [feedback, setFeedback] = useState
@@ -27,6 +29,9 @@ if (window.confirm('Are you sure you want to delete?')) {
   return ( // in the app component you can only insert two or more html elem
   // when u wrap them around either a Div elem or two angle brackets <> OR div
 // Now the router has the intial <> brackets 
+// Andn ow the inital tag comes at the Provider  is 
+
+        <FeedbackProvider>
         <Router> 
         <Header/>
         <div className="container" > 
@@ -38,8 +43,11 @@ if (window.confirm('Are you sure you want to delete?')) {
         </Route>
 
         <Route path='/about' component={AboutPage} />
+
+            <AboutIcon/>
             </div>
             </Router>
+            </FeedbackProvider>
         )
 
         }

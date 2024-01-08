@@ -31,7 +31,11 @@ header {
   align-items: center;
   margin-bottom: 30px;
 }
+a{
+  text-decoration: none;
+  color: #ff6a95;
 
+}
 .card {
   background-color: #fff;
   color: #333;

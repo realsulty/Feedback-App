@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 
 function Header({text, bgColor, textColor}) {
     const headerStyles= { // Basic inline you can use style libraries suc ass
@@ -8,7 +9,9 @@ function Header({text, bgColor, textColor}) {
   return (
     <header style={headerStyles}>
 <div className="container">
+  <Link style={{color:`${textColor}`}} to='/'>
     <h2>{text}</h2>
+  </Link>
 </div>
         </header>
   )
