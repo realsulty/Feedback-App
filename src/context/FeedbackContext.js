@@ -12,6 +12,13 @@ export const FeedbackProvider = ({children}) => {
             rating: 10,
         }
     ])
+
+
+   const [feedbackEdit, setFeedbackEdit] = useState({
+    item:{},
+    edit:false
+   }) 
+
     const addFeedback = (newFeedback) => {
         newFeedback.id = uuidv4()
         setFeedback([newFeedback, ...feedback])
@@ -22,11 +29,21 @@ export const FeedbackProvider = ({children}) => {
             setFeedback(feedback.filter((item) => item.id !== id))
         }
         }
+
+// Edit an item 
+        const editFeedback =(item) => {
+            setFeedbackEdit({
+                item,
+                edit:true
+            })
+        }
 // This is the component values that you can use check now the app.js 
 return <FeedbackContext.Provider value={{
     feedback,
     deleteFeedback,
     addFeedback,
+    editFeedback,
+    feedbackEdit,
 }}>
 
     {children}
