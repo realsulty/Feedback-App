@@ -1,15 +1,21 @@
 import Card from "./shared/Card"
-import { useState } from "react"
+import { useState,useContext } from "react"
 import Button from "./shared/Button"
 import RatingSelect from "./RatingSelect"
+import FeedbackContext from "../context/FeedbackContext"
+
 
 // We add props since they are function used in the upper file
 // here the handleAdd is passed to the parent file to incoke the function
-function FeedbackForm({handleAdd}) {
+function FeedbackForm() {
     const [text, setText] = useState('')
     const [rating, setRating] = useState(10)
     const [btnDisabled, setBtnDisabled] = useState(true)
     const [message, setMessage] = useState('')
+
+
+    const {addFeedback} = useContext(FeedbackContext)
+
 
     const handleTextChange = (e) => {
         if (text === ''){
@@ -33,7 +39,7 @@ function FeedbackForm({handleAdd}) {
                 text,
                 rating,
             }
-            handleAdd(newFeedback);
+            addFeedback(newFeedback);
             setText('')
 
         }

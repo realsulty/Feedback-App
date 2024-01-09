@@ -1,4 +1,6 @@
 import {createContext,useState} from 'react'
+import { v4 as uuidv4 } from 'uuid'
+
 
 const FeedbackContext = createContext()  
 
@@ -7,12 +9,24 @@ export const FeedbackProvider = ({children}) => {
         {
             id:1,
             text: ' This item is from context',
-            reting: 10,
+            rating: 10,
         }
     ])
-
+    const addFeedback = (newFeedback) => {
+        newFeedback.id = uuidv4()
+        setFeedback([newFeedback, ...feedback])
+    
+    }
+    const deleteFeedback = (id) => {
+        if (window.confirm('Are you sure you want to delete?')) {
+            setFeedback(feedback.filter((item) => item.id !== id))
+        }
+        }
+// This is the component values that you can use check now the app.js 
 return <FeedbackContext.Provider value={{
     feedback,
+    deleteFeedback,
+    addFeedback,
 }}>
 
     {children}
